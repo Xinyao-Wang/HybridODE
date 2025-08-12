@@ -37,8 +37,8 @@ def generate_file_paths(base_dir, prefix="fs_", suffix=""):
 
 
 # ------------------------ Load Poly44 Fit Models ------------------------
-data = scipy.io.loadmat('C:/Users/Xinyao/Desktop/pneu-sim-main/poly44_all_fits.mat')
-#data = scipy.io.loadmat('g:/其他计算机/My Laptop/pneu-sim-main/poly44_all_fits.mat')
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data = scipy.io.loadmat(os.path.join(script_dir, 'poly44_all_fits.mat'))
 powers = data['powers']
 fF_loadingP    = data['coeffs_fF_loadingP'].flatten()
 fF_unloadingP  = data['coeffs_fF_unloadingP'].flatten()
@@ -280,8 +280,7 @@ def make_train_step(optimizer, loss_fn):
 
 def main():
 
-    base_dir = "C:/Users/Xinyao/Desktop/pneu-sim-main/data/e2_new"
-    #base_dir ="g:/其他计算机/My Laptop/pneu-sim-main/data/e2_new"
+    base_dir = os.path.join(script_dir, 'data', 'e2_new')
     file_paths = generate_file_paths(base_dir)
 
     data_list = []
